@@ -23,15 +23,37 @@ export interface CodebaseAnalysis {
 }
 
 export interface DependencyAnalysis {
-  dependencies: any[];
+  dependencies: {
+    name: string;
+    version: string;
+    isNextRelated: boolean;
+    replacements?: string[];
+  }[];
   compatibility: {
     compatible: boolean;
     issues: string[];
   };
 }
 
+export interface RouteInfo {
+  path: string;
+  type: 'static' | 'dynamic' | 'catch-all' | 'api';
+  parameters: string[];
+  complexity: 'simple' | 'medium' | 'complex';
+  components: string[];
+  dataFetching?: 'getServerSideProps' | 'getStaticProps' | 'getStaticPaths';
+}
+
 export interface RoutingAnalysis {
-  routes: any[];
+  routes: RouteInfo[];
   dynamicRoutes: number;
   complexRoutes: number;
+}
+
+export interface ComplexityMetrics {
+  fileComplexity: Record<string, number>;
+  overallComplexity: number;
+  dataFetchingComplexity: number;
+  routingComplexity: number;
+  componentComplexity: number;
 }
