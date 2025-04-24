@@ -1,5 +1,5 @@
 
-import { ValidationResult, AnalyzerComponent } from '@/types/analyzer';
+import { ValidationResult, AnalyzerComponent, AnalyzerComponentStatus } from '@/types/analyzer';
 import { analyzeNextJsRoutes } from '../routeConverter';
 import { transformCode } from '../codeTransformer';
 
@@ -15,14 +15,14 @@ export async function validateConversionSystem(): Promise<ValidationResult> {
   try {
     const routeConverterValid = typeof analyzeNextJsRoutes === 'function';
     if (!routeConverterValid) {
-      components[0].status = 'warning';
+      components[0].status = 'error';
       components[0].message = 'RouteConverter validation warning';
       issues.push('RouteConverter validation warning');
     }
     
     const codeTransformerValid = typeof transformCode === 'function';
     if (!codeTransformerValid) {
-      components[1].status = 'warning';
+      components[1].status = 'error';
       components[1].message = 'CodeTransformer validation warning';
       issues.push('CodeTransformer validation warning');
     }

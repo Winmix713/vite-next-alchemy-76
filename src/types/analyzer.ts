@@ -1,4 +1,3 @@
-
 export type AnalyzerComponentStatus = 'ok' | 'warning' | 'error';
 
 export interface AnalyzerComponent {
@@ -58,4 +57,31 @@ export interface ComplexityMetrics {
   dataFetchingComplexity: number;
   routingComplexity: number;
   componentComplexity: number;
+}
+
+export interface TypeScriptAnalysis {
+  totalTypes: number;
+  nextJsTypes: number;
+  customTypes: number;
+  issues: string[];
+}
+
+export interface APIAnalysis {
+  endpoints: number;
+  dynamicEndpoints: number;
+  methods: {
+    GET: number;
+    POST: number;
+    PUT: number;
+    DELETE: number;
+    PATCH: number;
+  };
+  issues: string[];
+}
+
+export interface MiddlewareAnalysis {
+  count: number;
+  complexMiddlewares: number;
+  edgeMiddlewares: number;
+  issues: string[];
 }
