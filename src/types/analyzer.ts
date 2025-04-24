@@ -1,7 +1,9 @@
 
+export type AnalyzerComponentStatus = 'ok' | 'warning' | 'error';
+
 export interface AnalyzerComponent {
   name: string;
-  status: 'ok' | 'warning' | 'error';
+  status: AnalyzerComponentStatus;
   message?: string;
 }
 
