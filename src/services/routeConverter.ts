@@ -1,6 +1,6 @@
 
 import { RouteObject } from "react-router-dom";
-import { RouteConversionResult } from "@/types/conversion";
+import { ConversionResult } from "@/types/conversion";
 
 export interface NextJsRoute {
   path: string;
@@ -171,7 +171,13 @@ function createRouteObject(route: NextJsRoute, isChildRoute: boolean = false): R
 }
 
 function generateRouteComponent(route: NextJsRoute): string {
-  const result: RouteConversionResult = {
+  const result: {
+    originalPath: string;
+    convertedPath: string;
+    component: string;
+    imports: string[];
+    code: string;
+  } = {
     originalPath: route.path,
     convertedPath: route.path.replace(/\[(\w+)\]/g, ':$1'),
     component: route.component,
